@@ -1,6 +1,6 @@
 # Common Test I: Strong Lensing Substructure Classification
 
-This is my baseline solution for the first common test. The goal here was to take high-resolution images of gravitational lenses and figure out if they contain any "extra" substructures—like dark matter subhalos or vortex disturbances—or if they're just plain lenses with no substructure at all.
+This is my baseline solution for the first common test. The goal here was to take high-resolution images of gravitational lenses and figure out if they contain any "extra" substructures like dark matter subhalos or vortex disturbances or if they're just plain lenses with no substructure at all.
 
 ### How I tackled it (My Strategy)
 
@@ -12,7 +12,7 @@ This is my baseline solution for the first common test. The goal here was to tak
 ### What's inside?
 
 - **[Common_Test_I.ipynb](file:///d:/tests/DeepLense-ML4SCI-GSoC26-Tests/Common_Test_I/Common_Test_I.ipynb)**: My end-to-end implementation from data loading to evaluation.
-- **Automated Saving**: I set up the training loop to be "smart"—it automatically saves the best model weights to the `../model/` folder whenever it hits a new breakthrough in validation accuracy.
+- **Automated Saving**: I set up the training loop to be "smart", it automatically saves the best model weights to the `../model/` folder whenever it hits a new breakthrough in validation accuracy.
 - **Inference Demo**: I added a section at the end so you can load the saved `.pth` file and see the model predict a new image instantly.
 
 ### The Results
