@@ -12,9 +12,9 @@ The DeepLense project focuses on analyzing strong gravitational lensing images t
 
 This repository implements:
 
-- A supervised baseline classification model  
-- A physics-guided neural network extension  
-- A Masked Autoencoder (MAE) foundation model for representation learning  
+-   A supervised baseline classification model  
+-   A physics-guided neural network extension  
+-   A Masked Autoencoder (MAE) foundation model for representation learning  
 
 The goal is to build a scalable vision backbone tailored specifically for astrophysical lensing data.
 
@@ -35,19 +35,19 @@ Classify gravitational lensing images into three categories:
 
 ### Approach
 
-- Modified **ResNet-18** backbone (ImageNet pretrained)
-- Adapted for **1-channel grayscale input**
-- Removed initial max-pooling layer to preserve fine spatial details
-- Stratified 90:10 train-validation split
-- AdamW optimizer with CrossEntropyLoss
-- Multi-class ROC-AUC evaluation (One-vs-Rest)
+-   Modified **ResNet-18** backbone (ImageNet pretrained)
+-   Adapted for **1-channel grayscale input**
+-   Removed initial max-pooling layer to preserve fine spatial details
+-   Stratified 90:10 train-validation split
+-   AdamW optimizer with CrossEntropyLoss
+-   Multi-class ROC-AUC evaluation (One-vs-Rest)
 
 ### Key Results
 
-- Validation Accuracy: ~98%
-- Multi-class ROC-AUC: ~0.98+
-- Stable convergence within first 10–12 epochs
-- Strong class separability across all categories
+-   Validation Accuracy: ~98%
+-   Multi-class ROC-AUC: ~0.98+
+-   Stable convergence within first 10–12 epochs
+-   Strong class separability across all categories
 
 ![Final Evaluation Results](./Common_Test_I/outputs/final_evaluation.png)
 
@@ -60,15 +60,15 @@ Enhance classification performance by incorporating physics-informed constraints
 
 ### Approach
 
-- Extended baseline CNN with physics-inspired regularization
-- Incorporated lensing equation consistency constraints
-- Compared performance against supervised baseline
+-   Extended baseline CNN with physics-inspired regularization
+-   Incorporated lensing equation consistency constraints
+-   Compared performance against supervised baseline
 
 ### Key Results
 
-- Improved robustness across validation splits
-- Better sensitivity to subtle substructure distortions
-- Enhanced interpretability of learned features
+-   Improved robustness across validation splits
+-   Better sensitivity to subtle substructure distortions
+-   Enhanced interpretability of learned features
 
 ---
 
@@ -81,16 +81,16 @@ Train a Masked Autoencoder (MAE) on *no_sub* samples from the foundation dataset
 
 ### Approach
 
-- Vision Transformer-based MAE
-- Random masking strategy (~75% patch masking)
-- Reconstruction loss for self-supervised learning
-- Pretraining on *no_sub* subset
+-   Vision Transformer-based MAE
+-   Random masking strategy (~75% patch masking)
+-   Reconstruction loss for self-supervised learning
+-   Pretraining on *no_sub* subset
 
 ### Key Results
 
-- Learned meaningful structural embeddings
-- Strong reconstruction of masked lensing regions
-- Robust spatial feature learning without labels
+-   Learned meaningful structural embeddings
+-   Strong reconstruction of masked lensing regions
+-   Robust spatial feature learning without labels
 
 ---
 
@@ -101,16 +101,16 @@ Fine-tune the pretrained MAE for a super-resolution task to upscale low-resoluti
 
 ### Approach
 
-- Attached classification head
-- Fine-tuned on full dataset
-- Compared against supervised baseline
+-   Attached classification head
+-   Fine-tuned on full dataset
+-   Compared against supervised baseline
 
 ### Key Results
 
-- Enhanced image fidelity through learned structural priors
-- Evaluated using MSE, SSIM, and PSNR metrics
-- Faster convergence compared to training from scratch
-- Improved generalization across different resolutions
+-   Enhanced image fidelity through learned structural priors
+-   Evaluated using MSE, SSIM, and PSNR metrics
+-   Faster convergence compared to training from scratch
+-   Improved generalization across different resolutions
 
 ---
 
