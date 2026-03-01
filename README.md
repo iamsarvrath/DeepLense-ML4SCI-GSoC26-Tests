@@ -2,8 +2,6 @@
 
 This repository contains my solutions for the **DeepLense / ML4SCI GSoC 2026** evaluation tests, focusing on the **Foundation Model for Gravitational Lensing** project.
 
-A dedicated submission repository for the **Google Summer of Code 2026 – ML4SCI DeepLense (Foundation Model for Gravitational Lensing)**.
-
 ---
 
 # Overview
