@@ -58,7 +58,7 @@ Enhance classification performance and robustness by incorporating physical cons
 
 ### Approach
 
--   **Multi-Head Architecture**: Extended ResNet-18 to simultaneously predict the class, lensing potential ($\psi$), mass convergence ($\kappa$), and Einstein radius ($\theta_E$).
+-   **Multi-Head Architecture**: Extended ResNet-18 to simultaneously predict the class, lensing potential $\psi$, mass convergence $\kappa$, and Einstein radius $\theta_E$.
 -   **Physics-Informed Loss**: Implemented a composite loss function: $L_{total} = L_{CE} + \lambda_1 L_{lens} + \lambda_{2} L_{poisson} + \lambda_3 L_{E}$.
 -   **Physical Sanity**: Enforced $\nabla^2 \psi = 2\kappa$ consistency, bridging the predicted potential and mass maps.
 -   **Optimization**: Applied spatial downsampling and Mixed Precision (AMP) for a 20x training speedup.

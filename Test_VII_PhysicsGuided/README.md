@@ -4,7 +4,7 @@ This is my advanced solution for Test VII, where I moved beyond standard image r
 
 ### How I tackled it (My Strategy)
 
-1.  **Breaking the Black Box**: Most models are "black boxes", they give a label but don't explain why? I modified a ResNet-18 backbone to be "Multi-Head". It doesn't just predict a class,it also generates 2D maps for the **Lensing Potential** ($\psi$) and the **Convergence/Mass Density** ($\kappa$).
+1.  **Breaking the Black Box**: Most models are "black boxes"—they give a label but don't explain why. I modified a ResNet-18 backbone to be "Multi-Head". It doesn't just predict a class; it also generates 2D maps for the **Lensing Potential** $\psi$ and the **Convergence/Mass Density** $\kappa$.
 2.  **Enforcing the Laws of Physics**: I didn't just let the model guess these maps. I added special "Physics Losses" based on **Poisson's Equation** ($\nabla^2 \psi = 2\kappa$). If the model's predicted mass doesn't match its predicted potential according to the laws of gravity, it gets penalized.
 3.  **Einstein Ring Grounding**: I added a fourth head for the **Einstein Radius** ($\theta_E$). This helps the model ground its deflection field in the actual scale of the ring it sees in the image, making the whole prediction physically consistent.
 4.  **Stability & Speed**: To handle the extra complexity of the physics heads, I used **Mixed Precision (AMP)** and **Spatial Downsampling**. This made the training nearly 20x faster than the unoptimized version while keeping the math precise.
@@ -58,7 +58,7 @@ The PINN architecture achieved a significant boost in classification robustness:
 You'll notice accuracy dropped slightly while AUC went up. In a physics-guided setup, the physics terms act as a **regularizer**. They prevent the model from "cheating" by over-fitting to specific pixel noise. While this softens the classification boundary slightly, it makes the model much more robust at ranking (which is why AUC improved) and much more physically honest.
 
 ![Physics Pipeline](./pinn_physics_pipeline.png)
-*Figure 1: The PINN Physics Pipeline — Input Image $\rightarrow$ Predicted Lensing Potential ($\psi$) $\rightarrow$ Predicted Convergence ($\kappa$).*
+*Figure 1: The PINN Physics Pipeline — Input Image → Predicted Lensing Potential $\psi$ → Predicted Convergence $\kappa$.*
 
 ![Final Evaluation](./outputs/final_evaluation.png)
 *Figure 2: Multi-Class ROC (Macro AUC = 0.9938) and Confusion Matrix.*
