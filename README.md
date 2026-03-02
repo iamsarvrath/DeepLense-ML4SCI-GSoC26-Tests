@@ -43,7 +43,7 @@ Classify gravitational lensing images into three categories:
 ### Key Results
 
 -   Validation Accuracy: ~98%
--   Multi-class ROC-AUC: ~0.98+
+-   Multi-class ROC-AUC: 0.9904
 -   Stable convergence within first 10–12 epochs
 -   Strong class separability across all categories
 
@@ -54,19 +54,23 @@ Classify gravitational lensing images into three categories:
 ## Test VII: Physics-Guided Neural Network (PINN)
 
 **Objective:**  
-Enhance classification performance by incorporating physics-informed constraints, specifically using the gravitational lensing equation, to improve network performance over the baseline.
+Enhance classification performance and robustness by incorporating physical constraints from gravitational lensing theory. Instead of a black-box approach, the model is guided by the **Lens Equation** and **Poisson's Equation**.
 
 ### Approach
 
--   Extended baseline CNN with physics-inspired regularization
--   Incorporated lensing equation consistency constraints
--   Compared performance against supervised baseline
+-   **Multi-Head Architecture**: Extended ResNet-18 to simultaneously predict the class, lensing potential ($\psi$), mass convergence ($\kappa$), and Einstein radius ($\theta_E$).
+-   **Physics-Informed Loss**: Implemented a composite loss function: $L_{total} = L_{CE} + \lambda_1 L_{lens} + \lambda_{2} L_{poisson} + \lambda_3 L_{E}$.
+-   **Physical Sanity**: Enforced $\nabla^2 \psi = 2\kappa$ consistency, bridging the predicted potential and mass maps.
+-   **Optimization**: Applied spatial downsampling and Mixed Precision (AMP) for a 20x training speedup.
 
 ### Key Results
 
--   Improved robustness across validation splits
--   Better sensitivity to subtle substructure distortions
--   Enhanced interpretability of learned features
+-   **Improved ROC-AUC**: Reached **0.9938** (surpassing the base 0.9904).
+-   **Physically Interpretable**: The model generates actual potential and mass density maps alongside its predictions.
+-   **Enhanced Robustness**: Better ranking performance at the cost of a slight trade-off in accuracy (~94.29%).
+
+![Physics Pipeline](./Test_VII_PhysicsGuided/pinn_physics_pipeline.png)
+![Final Evaluation Results](./Test_VII_PhysicsGuided/outputs/final_evaluation.png)
 
 ---
 
@@ -116,8 +120,8 @@ Fine-tune the pretrained MAE for a super-resolution task to upscale low-resoluti
 
 | Task | Model | Key Metrics |
 |------|--------|------------|
-| Multi-Class Classification | Modified ResNet-18 | Accuracy: ~98%, AUC: ~0.98 |
-| Physics-Guided ML | PINN-Enhanced CNN | Improved validation robustness |
+| Multi-Class Classification | Modified ResNet-18 | Accuracy: ~98%, AUC: 0.9904 |
+| Physics-Guided ML | Multi-Head PINN | Accuracy: ~94.29%, **AUC: 0.9938** |
 | Foundation Model | MAE + Fine-Tuning | Strong representation transfer |
 
 ---
@@ -131,7 +135,9 @@ Fine-tune the pretrained MAE for a super-resolution task to upscale low-resoluti
 │   ├── README.md             # Detailed task report & strategy
 │   └── outputs/              # Evaluation plots (ROC, Confusion Matrix)
 ├── Test_VII_PhysicsGuided/   # Physics-Guided ML implementation
-│   └── ...
+│   ├── Test_VII_PhysicsGuided.ipynb  # PINN notebook
+│   ├── README.md             # Detailed PINN report & physics formulas
+│   └── outputs/              # Physics loss decay & evaluations
 ├── Test_IXA_Foundation_MAE/  # Task IX.A: MAE Pretraining
 │   └── ...
 ├── Test_IXB_Foundation_SR/   # Task IX.B: MAE Fine-Tuning
@@ -163,5 +169,3 @@ Fine-tune the pretrained MAE for a super-resolution task to upscale low-resoluti
    - Navigate to the specific task folder.
    - Ensure the dataset is in the `data/` directory.
    - Execute the Jupyter notebook.
-
-
