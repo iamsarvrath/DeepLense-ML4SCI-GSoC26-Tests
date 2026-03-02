@@ -69,7 +69,7 @@ Enhance classification performance and robustness by incorporating physical cons
 -   **Physically Interpretable**: The model generates actual potential and mass density maps alongside its predictions.
 -   **Enhanced Robustness**: Better ranking performance at the cost of a slight trade-off in accuracy (~94.29%).
 
-![Physics Pipeline](./Test_VII_PhysicsGuided/pinn_physics_pipeline.png)
+
 ![Final Evaluation Results](./Test_VII_PhysicsGuided/outputs/final_evaluation.png)
 
 ---
