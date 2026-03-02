@@ -3,6 +3,7 @@
 This is my advanced solution for Test VII, where I moved beyond standard image recognition and implemented a **Physics-Informed Neural Network (PINN)**. Instead of just looking at pixels, the model is forced to "understand" and predict the actual physical properties of the gravitational lens, like its potential and mass density.
 
 ![Physics Pipeline](./pinn_physics_pipeline.png)
+
 Figure 1: The PINN Physics Pipeline — Input Image → Predicted Lensing Potential $\psi$ → Predicted Convergence $\kappa$.
 
 ### How I tackled it (My Strategy)
