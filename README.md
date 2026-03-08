@@ -60,6 +60,7 @@ Train a deep learning-based super-resolution algorithm to upscale low-resolution
 ### Approach
 
 ![EDSR Architecture](./Test_VIA_SuperResolution/outputs/edsr_architecture.png)
+
 *Figure 2: EDSR Architecture — Residual blocks with scaling, sub-pixel upsampling, and global skip connections.*
 
 -   **Architecture**: Implemented the **Enhanced Deep Super-Resolution (EDSR)** model with 16 residual blocks and 64 feature channels.

@@ -8,6 +8,7 @@ This is my implementation for Task VI.A, where I trained a deep learning-based s
 ### My Strategy (Efficient Image Reconstruction)
 
 ![EDSR Architecture](./outputs/edsr_architecture.png)
+
 *Figure 2: EDSR Architecture — Residual blocks with scaling, sub-pixel upsampling, and global skip connections.*
 
 1.  **EDSR Backbone**: I implemented a refined version of the Deep Residual Network that removes batch normalization. This stabilizes training for image-to-image tasks and prevents the model from shifting the absolute brightness of lensing arcs—a common issue in standard ResNets.
