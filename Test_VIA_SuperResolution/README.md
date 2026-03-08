@@ -11,7 +11,7 @@ This is my implementation for Task VI.A, where I trained a deep learning-based s
 
 *Figure 2: EDSR Architecture - Residual blocks with scaling, sub-pixel upsampling, and global skip connections.*
 
-1.  **EDSR Backbone**: I implemented a refined version of the Deep Residual Network that removes batch normalization. This stabilizes training for image-to-image tasks and prevents the model from shifting the absolute brightness of lensing arcs,a common issue in standard ResNets.
+1.  **EDSR Backbone**: I implemented a refined version of the Deep Residual Network that removes batch normalization. This stabilizes training for image-to-image tasks and prevents the model from shifting the absolute brightness of lensing arcs, a common issue in standard ResNets.
 2.  **L1 Loss Optimization**: Instead of standard MSE, I optimized the model using **Mean Absolute Error (L1 Loss)**. For super-resolution, L1 loss is more robust to outliers and generally yields sharper edges and better perceptual quality (PSNR/SSIM).
 3.  **Residual Scaling (0.1)**: To stabilize the training of a 16-block residual network, I applied a scaling factor of 0.1 to each residual connection. This prevents gradients from exploding and allows for higher learning rates.
 4.  **Hardware & Pipeline Efficiency**: Trained locally on an **RTX 4050**. I utilized **Mixed Precision (AMP)** and **non-blocking GPU transfers** to maximize throughput. Data loading was optimized with **num_workers=0** for stability on Windows.
