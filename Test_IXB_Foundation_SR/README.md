@@ -3,6 +3,7 @@
 This is my implementation for **Specific Test IX.B**, where I took the pretrained model from Task VI.A and fine-tuned it for a specialized super-resolution task. By leveraging the **Enhanced Deep Super-Resolution (EDSR)** architecture, the model learns to upscale low-resolution (LR) strong gravitational lensing images back to their high-resolution (HR) ground truths, preserving critical morphological features like Einstein rings.
 
 ![EDSR Reconstruction](./outputs/reconstruction.png)
+
 *Figure 1: Fine-Tuned Reconstruction - Low Resolution Input (75x75) → EDSR Reconstruction (150x150) → High Resolution Ground Truth (150x150).*
 
 ### My Strategy (Fine-Tuning for Quality)
@@ -41,13 +42,19 @@ The fine-tuned model demonstrates superior performance in recovering lensing str
 | **Bicubic baseline** | 0.000101 | 40.14 dB | 0.9637 |
 | **EDSR (Fine-Tuned)** | **0.000068** | **41.76 dB** | **0.9762** |
 
+
 ![Fine-Tuning Convergence](./outputs/fine_tuning_loss_curve.png)
+
 *Figure 2: Fine-Tuning Convergence - Smooth decline in L1 loss indicates successful adaptation to the new dataset.*
 
+
 ![Difference Map](./outputs/difference_map.png)
+
 *Figure 3: Absolute Difference Map - Visualizing error distribution between ground truth and reconstruction.*
 
+
 ![Pixel Error](./outputs/pixel_error.png)
+
 *Figure 4: Distribution of Pixel-wise Errors - Centered at zero, confirming the model maintains intensity fidelity.*
 
 ### How to run it
