@@ -19,7 +19,9 @@ I didn't just let the model "guess", I guided it using three core physics rules:
 
 #### 1. The Lens Equation (Geometric Consistency)
 This formula maps where the light *should* be based on the potential we predicted:
+
 $$\beta = \theta - \nabla \psi(\theta)$$
+
 *   **$\beta$**: Source position.
 *   **$\theta$**: Observed image position.
 *   **$\nabla \psi$**: The gradient of the potential (the "deflection").
@@ -27,17 +29,23 @@ $$\beta = \theta - \nabla \psi(\theta)$$
 
 #### 2. Poisson's Equation (Mass-Potential Coupling)
 This is the most important rule in the PINN. It links the mass density ($\kappa$) to the potential ($\psi$):
+
 $$\nabla^2 \psi = 2\kappa$$
+
 *   **Use**: This forces the model to be honest. It can't predict a random mass map; that mass *must* be the physical source of the potential map.
 
 #### 3. Einstein Ring Consistency
 I use a Gaussian-weighted loss to ensure the deflection happens exactly at the predicted Einstein radius ($\theta_E$):
+
 $$L_{E} = \text{mean}((|\alpha| - \theta_E)^2 \cdot e^{-(\tau-\theta_E)^2})$$
+
 *   **Use**: This "grounds" the model in the observed geometry of the ring.
 
 #### 4. Combined PINN Loss
 The total loss I optimize is a balance of classification and physics:
+
 $$L_{\text{total}} = L_{\text{CE}} + \lambda_1 L_{\text{lens}} + \lambda_2 L_{\text{poisson}} + \lambda_3 L_{E}$$
+
 *   **$L_{\text{CE}}$**: Standard Cross-Entropy for classification.
 *   **$\lambda_{1,2,3}$**: Weights to balance the physics (I found $0.002, 0.0002, 0.0002$ to be the best balance).
 
@@ -61,7 +69,7 @@ The PINN architecture achieved a significant boost in classification robustness:
 #### Why the trade-off?
 You'll notice accuracy dropped slightly while AUC went up. In a physics-guided setup, the physics terms act as a **regularizer**. They prevent the model from "cheating" by over-fitting to specific pixel noise. While this softens the classification boundary slightly, it makes the model much more robust at ranking (which is why AUC improved) and much more physically honest.
 
-<truncated 0 bytes>
+
 ![Final Evaluation](./outputs/final_evaluation.png)
 *Figure 2: Multi-Class ROC (Macro AUC = 0.9938) and Confusion Matrix.*
 

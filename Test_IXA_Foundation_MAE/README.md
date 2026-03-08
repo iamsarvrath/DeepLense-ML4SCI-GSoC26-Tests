@@ -18,18 +18,25 @@ The model optimizes for a normalized pixel reconstruction loss, ensuring it capt
 
 #### 1. Masking Strategy
 The image is divided into $L$ patches. We keep a subset $L_{keep}$ and mask the rest:
+
 $$x_{keep} = \text{Gather}(x, ids_{keep})$$
+
 Where $ids_{keep}$ is a random sample of indexes based on a 90% mask ratio.
 
 #### 2. Patch Target Normalization
 To improve reconstruction stability, I compute the Mean Squared Error (MSE) on pixel-normalized targets:
+
 $$\hat{y} = \frac{y - \mu_y}{\sqrt{\sigma_y^2 + 10^{-6}}}$$
+
 This forces the model to focus on the **contrast and structure** of the lensing arcs rather than the absolute brightness levels.
 
 #### 3. Combined Loss Function
 The pretraining objective is to minimize the distance between predicted and target patches:
-$$L_{MAE} = \text{mean}((\text{pred}_{masked} - \text{target}_{masked})^2)$$
+
+$$L_{MAE} = \operatorname{mean}((\operatorname{pred}_{masked} - \operatorname{target}_{masked})^2)$$
+
 During fine-tuning, we switch to standard Cross-Entropy for 3-class classification:
+
 $$L_{total} = L_{CE}(f_{enc}(x), y)$$
 
 ### What's inside?
