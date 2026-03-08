@@ -33,7 +33,7 @@ This forces the model to focus on the **contrast and structure** of the lensing 
 #### 3. Combined Loss Function
 The pretraining objective is to minimize the distance between predicted and target patches:
 
-$$L_{MAE} = \operatorname{mean}((\operatorname{pred}_{masked} - \operatorname{target}_{masked})^2)$$
+$$L_{MAE} = \text{mean}((\text{pred}_{masked} - \text{target}_{masked})^2)$$
 
 During fine-tuning, we switch to standard Cross-Entropy for 3-class classification:
 
