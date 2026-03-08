@@ -3,7 +3,7 @@
 This is my solution for Test IX.A, where I implemented a **Masked Autoencoder (MAE)** foundation model for strong gravitational lensing images. By utilizing self-supervised representation learning, the model first "masters" the physics of smooth lensing arcs before moving to subhalo classification.
 
 ![MAE Reconstruction](./outputs/mae_reconstruction_visualization.png)
-*Figure 1: MAE Reconstruction Pipeline — Original Image → 90% Masked → Full Reconstructed Image.*
+*Figure 1: MAE Reconstruction Pipeline - Original Image → 90% Masked → Full Reconstructed Image.*
 
 ### My Strategy (Representation Learning)
 
