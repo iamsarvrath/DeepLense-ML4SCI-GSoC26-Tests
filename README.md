@@ -12,6 +12,7 @@ This repository implements:
 
 -   A supervised baseline classification model  
 -   A physics-guided neural network extension  
+-   A deep learning-based super-resolution baseline  
 -   A Masked Autoencoder (MAE) foundation model for representation learning  
 
 The goal is to build a scalable vision backbone tailored specifically for astrophysical lensing data.
@@ -48,6 +49,31 @@ Classify gravitational lensing images into three categories:
 -   Strong class separability across all categories
 
 ![Final Evaluation Results](./Common_Test_I/outputs/final_evaluation.png)
+
+---
+
+## Test VI.A: Super-Resolution Baseline
+
+**Objective:**  
+Train a deep learning-based super-resolution algorithm to upscale low-resolution (LR) strong lensing images to high-resolution (HR) ground truths, recovering fine spatial details critical for lensing analysis.
+
+### Approach
+
+-   **Architecture**: Implemented the **Enhanced Deep Super-Resolution (EDSR)** model with 16 residual blocks and 64 feature channels.
+-   **Elimination of BN**: Removed batch normalization layers to preserve absolute brightness and scientific fidelity.
+-   **Training Objective**: Optimized using **L1 Loss** (Mean Absolute Error) for sharper reconstruction and higher PSNR/SSIM.
+-   **Stability**: Applied **Residual Scaling** (0.1) to each block to stabilize deep residual learning.
+-   -   **Efficient Upscaling**: Used **PixelShuffle** (sub-pixel convolution) for efficient 2x resolution enhancement (75x75 → 150x150).
+-   **Performance**: Leveraged **Mixed Precision (AMP)** and non-blocking GPU transfers for high-throughput training on local hardware.
+
+### Key Results
+
+-   **PSNR**: reached **41.75 dB** (outperforming the 40.16 dB bicubic baseline).
+-   **SSIM**: achieved **0.9763**, indicating extremely high structural similarity to the ground truth.
+-   **MSE**: minimized to **0.000068**.
+-   **Scientific Fidelity**: Successfully reconstructed the complex geometry of Einstein rings from pixelated 75x75 inputs.
+
+![Super-Resolution Results](./Test_VIA_SuperResolution/outputs/reconstruction_results.png)
 
 ---
 
@@ -132,6 +158,7 @@ Fine-tune the pretrained MAE for a super-resolution task to upscale low-resoluti
 | Task | Model | Key Metrics |
 |------|--------|------------|
 | Multi-Class Classification | Modified ResNet-18 | Accuracy: ~98%, AUC: 0.9904 |
+| Super-Resolution (VI.A) | EDSR Baseline | **PSNR: 41.75 dB, SSIM: 0.9763** |
 | Physics-Guided ML | Multi-Head PINN | Accuracy: ~94.29%, **AUC: 0.9938** |
 | Foundation Model (IX.A) | MAE + Fine-Tuning | **Accuracy: 83.12%, AUC: 0.9357** |
 
@@ -149,6 +176,10 @@ Fine-tune the pretrained MAE for a super-resolution task to upscale low-resoluti
 │   ├── Test_VII_PhysicsGuided.ipynb  # PINN notebook
 │   ├── README.md             # Detailed PINN report & physics formulas
 │   └── outputs/              # Physics loss decay & evaluations
+├── Test_VIA_SuperResolution/ # Task VI.A: Super-Resolution Baseline
+│   ├── Test_VIA_SuperResolution.ipynb
+│   ├── README.md
+│   └── outputs/
 ├── Test_IXA_Foundation_MAE/  # Task IX.A: MAE Pretraining
 │   └── ...
 ├── Test_IXB_Foundation_SR/   # Task IX.B: MAE Fine-Tuning
