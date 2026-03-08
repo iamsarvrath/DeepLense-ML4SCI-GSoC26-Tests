@@ -11,4 +11,4 @@ Pillow
 tqdm
 jupyter
 ipykernel
-
+opencv-python

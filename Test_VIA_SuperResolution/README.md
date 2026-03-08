@@ -59,6 +59,7 @@ The EDSR model significantly outperforms the bicubic interpolation baseline in r
 *Figure 3: Absolute Reconstruction Error - Most error is concentrated at high-frequency arc boundaries.*
 
 ![Error Distribution](./outputs/error_distribution.png)
+
 *Figure 4: Distribution of Pixel-wise Errors - Concentrated around zero, indicating minimal systematic bias.*
 
 ### How to run it
