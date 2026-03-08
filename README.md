@@ -154,7 +154,7 @@ Fine-tune the pretrained Super-Resolution model from Task VI.A for specialized l
 -   **PSNR**: reached **41.76 dB**.
 -   **SSIM**: achieved **0.9762**, matching high-quality baseline performance.
 -   **MSE**: minimized to **0.000068**.
--   **Morphological Recovery**: Demonstrated sharp reconstruction of intricate lensing structures compared to bicubic interpolation.
+-   **Structural Restoration**: Demonstrated sharp reconstruction of intricate lensing structures compared to bicubic interpolation.
 
 ![EDSR Difference Map](./Test_IXB_Foundation_SR/outputs/difference_map.png)
 
@@ -169,34 +169,6 @@ Fine-tune the pretrained Super-Resolution model from Task VI.A for specialized l
 | Physics-Guided ML | Multi-Head PINN | Accuracy: ~94.29%, **AUC: 0.9938** |
 | Foundation Model (IX.A) | MAE Pretraining | **Accuracy: 83.12%, AUC: 0.9357** |
 | Foundation Model (IX.B) | Fine-Tuned EDSR | **PSNR: 41.76 dB, SSIM: 0.9762** |
-
----
-
-# Repository Structure
-
-```text
-.
-├── Common_Test_I/            # Multi-class classification baseline
-│   ├── Common_Test_I.ipynb   # Main implementation notebook
-│   ├── README.md             # Detailed task report & strategy
-│   └── outputs/              # Evaluation plots (ROC, Confusion Matrix)
-├── Test_VII_PhysicsGuided/   # Physics-Guided ML implementation
-│   ├── Test_VII_PhysicsGuided.ipynb  # PINN notebook
-│   ├── README.md             # Detailed PINN report & physics formulas
-│   └── outputs/              # Physics loss decay & evaluations
-├── Test_VIA_SuperResolution/ # Task VI.A: Super-Resolution Baseline
-│   ├── Test_VIA_SuperResolution.ipynb
-│   ├── README.md
-│   └── outputs/
-├── Test_IXA_Foundation_MAE/  # Task IX.A: MAE Pretraining
-│   └── ...
-├── Test_IXB_Foundation_SR/   # Task IX.B: MAE Fine-Tuning
-│   └── ...
-├── data/                     # Dataset storage (git-ignored)
-├── model/                    # Best model weights (git-ignored)
-├── README.md                 # Project overview (this file)
-└── requirements.txt          # Python dependencies
-```
 
 ---
 
