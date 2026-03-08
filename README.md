@@ -79,20 +79,31 @@ Enhance classification performance and robustness by incorporating physical cons
 ### Task IX.A – Self-Supervised Pretraining
 
 **Objective:**  
-Train a Masked Autoencoder (MAE) on *no_sub* samples from the foundation dataset (containing *no_sub*, *cdm*, and *axion* classes) to learn lensing-specific representations, then fine-tune for multi-class classification.
+Learn robust, physics-aware representations of gravitational lensing systems using **Self-Supervised Pretraining** on smooth lenses, followed by high-accuracy classification of dark matter substructures (`no_sub`, `cdm`, `axion`).
 
 ### Approach
 
--   Vision Transformer-based MAE
--   Random masking strategy (~75% patch masking)
--   Reconstruction loss for self-supervised learning
--   Pretraining on *no_sub* subset
+-   **Architecture**: Implemented a **Vision Transformer (ViT)** based Masked Autoencoder with a custom Patch Embedding layer (4x4 patches).
+-   **Self-Supervised Strategy**: 
+    -   **Pretraining Phase**: Trained exclusively on `no_sub` (smooth lens) simulations to allow the model to learn the fundamental physics of Einstein rings without label bias.
+    -   **90% Mask Ratio**: Used a high masking threshold to force the encoder to prioritize global structural features over local pixel correlations.
+-   **Loss Function**: 
+    -   Utilized **Normalized Pixel Loss** during pretraining to emphasize contrast and structural patterns.
+    -   Applied **Mean Squared Error (MSE)** between reconstructed patches and normalized original patches.
+-   **Fine-Tuning/Transfer Phase**: 
+    -   Pretrained encoder weights were transferred to a classification model.
+    -   Attached a 3-class MLP head to the **CLS token** for supervised detection of `cdm` and `axion` substructures.
+-   **Optimization**: Employed **Cosine Annealing** learning rate schedules and **Mixed Precision (AMP)** for efficient, high-fidelity convergence.
 
 ### Key Results
 
--   Learned meaningful structural embeddings
--   Strong reconstruction of masked lensing regions
--   Robust spatial feature learning without labels
+-   **Macro ROC-AUC**: **0.9357**
+-   **Validation Accuracy**: **83.12%**
+-   **Per-Class AUC**: no_sub (**0.994**), cdm (**0.841**), axion (**0.972**)
+-   **Representation Learning**: Captured global lensing physics with a 90% mask ratio, enabling robust subhalo detection.
+-   **Latent Analysis**: t-SNE visualization confirmed distinct categorical clustering in the encoder's feature space.
+
+![Final Evaluation Results](./Test_IXA_Foundation_MAE/outputs/roc_curve_confusion_matrix.png)
 
 ---
 
@@ -122,7 +133,7 @@ Fine-tune the pretrained MAE for a super-resolution task to upscale low-resoluti
 |------|--------|------------|
 | Multi-Class Classification | Modified ResNet-18 | Accuracy: ~98%, AUC: 0.9904 |
 | Physics-Guided ML | Multi-Head PINN | Accuracy: ~94.29%, **AUC: 0.9938** |
-| Foundation Model | MAE + Fine-Tuning | Strong representation transfer |
+| Foundation Model (IX.A) | MAE + Fine-Tuning | **Accuracy: 83.12%, AUC: 0.9357** |
 
 ---
 
