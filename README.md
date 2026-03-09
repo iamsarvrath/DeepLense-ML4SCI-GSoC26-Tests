@@ -19,6 +19,13 @@ The goal is to build a scalable vision backbone tailored specifically for astrop
 
 ---
 
+# Trained Model Weights
+
+Trained model weights for all tasks (Classification, Super-Resolution, PINN, and MAE) are available here:  
+👉 **[Google Drive – DeepLense Model Weights](https://drive.google.com/drive/folders/1uR6w-yAcbD5E2nEPWnjBVlfTFyZqt7hH?usp=sharing)**
+
+---
+
 # Implemented Tasks
 
 ---
